@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flores Amarillas</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+
+            overflow: hidden;
+
+            font-family: Arial, sans-serif;
+
+            background: #f8c8dc;
+        }
+
+
+        /* =====================================
+           BOTÓN DE SIGUIENTE PÁGINA
+        ====================================== */
+
+        .boton-siguiente {
+
+            position: fixed;
+
+            top: 25px;
+            right: 30px;
+
+            z-index: 5000;
+
+            text-decoration: none;
+
+            background: #fff7fa;
+
+            color: #d94f87;
+
+            border: 2px solid #e58aae;
+
+            padding: 15px 25px;
+
+            border-radius: 40px;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            box-shadow:
+                0 7px 18px rgba(150, 60, 100, 0.20);
+
+            transition: 0.3s ease;
+        }
+
+
+        .boton-siguiente:hover {
+
+            transform: scale(1.06);
+
+            background: #ffe8f1;
+
+            box-shadow:
+                0 12px 25px rgba(150, 60, 100, 0.30);
+        }
+
+
+        /* =====================================
+           ESCENARIO
+        ====================================== */
+
+        .escenario {
+
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        #ramo {
+
+            position: relative;
+
+            width: 900px;
+            height: 650px;
+        }
+
+
+        /* =====================================
+           TALLOS
+        ====================================== */
+
+        .tallo {
+
+            position: absolute;
+
+            height: 7px;
+
+            background:
+                linear-gradient(to bottom,
+                    #4ebc63,
+                    #177335);
+
+            border-radius: 20px;
+
+            transform-origin: left center;
+
+            z-index: 2;
+
+            transform:
+                rotate(var(--angulo)) scaleX(0);
+
+            animation:
+                crecerTallo 1.2s ease var(--delay) forwards;
+        }
+
+
+        @keyframes crecerTallo {
+
+            from {
+                transform:
+                    rotate(var(--angulo)) scaleX(0);
+            }
+
+            to {
+                transform:
+                    rotate(var(--angulo)) scaleX(1);
+            }
+        }
+
+
+        /* HOJITA */
+
+        .tallo::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 34px;
+            height: 17px;
+
+            left: 52%;
+            top: -4px;
+
+            background:
+                linear-gradient(135deg,
+                    #54bd67,
+                    #1b7438);
+
+            border-radius:
+                100% 0 100% 0;
+
+            transform:
+                rotate(-35deg);
+        }
+
+
+        /* =====================================
+           FLORES
+        ====================================== */
+
+        .flor {
+
+            position: absolute;
+
+            width: 110px;
+            height: 110px;
+
+            transform:
+                translate(-50%, -50%);
+
+            z-index: 20;
+
+            transition:
+                transform 0.3s ease,
+                filter 0.3s ease;
+        }
+
+
+        .cabeza {
+
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+
+            left: 5px;
+            top: 5px;
+
+            opacity: 0;
+
+            transform: scale(0);
+
+            animation:
+                florecer 0.8s ease-out var(--flor-delay) forwards;
+        }
+
+
+        @keyframes florecer {
+
+            0% {
+
+                opacity: 0;
+
+                transform:
+                    scale(0) rotate(-30deg);
+            }
+
+            70% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1.15) rotate(5deg);
+            }
+
+            100% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1) rotate(0deg);
+            }
+        }
+
+
+        /* =====================================
+           PÉTALOS
+        ====================================== */
+
+        .petalo {
+
+            position: absolute;
+
+            width: 27px;
+            height: 48px;
+
+            left: 36px;
+            top: 26px;
+
+            border-radius:
+                55% 55% 45% 45%;
+
+            background:
+                linear-gradient(#fff650,
+                    #ffc400);
+
+            transform-origin:
+                13px 24px;
+
+            box-shadow:
+                0 2px 4px rgba(160, 110, 0, 0.20);
+        }
+
+
+        /* =====================================
+           CENTRO DEL GIRASOL
+        ====================================== */
+
+        .centro {
+
+            position: absolute;
+
+            width: 43px;
+            height: 43px;
+
+            left: 29px;
+            top: 29px;
+
+            border-radius: 50%;
+
+            z-index: 10;
+
+            background:
+                radial-gradient(circle at 35% 35%,
+                    #874816,
+                    #522706,
+                    #251003);
+
+            box-shadow:
+                inset 0 0 8px rgba(0, 0, 0, 0.45);
+        }
+
+
+        /* =====================================
+           FLORES ESPECIALES
+        ====================================== */
+
+        .especial {
+
+            cursor: pointer;
+
+            z-index: 50;
+
+            filter:
+                drop-shadow(0 0 9px rgba(255, 215, 0, 0.75));
+        }
+
+
+        .especial .cabeza {
+
+            width: 108px;
+            height: 108px;
+        }
+
+
+        .especial:hover {
+
+            transform:
+                translate(-50%, -50%) scale(1.15);
+
+            filter:
+                drop-shadow(0 0 18px rgba(255, 225, 30, 1));
+
+            z-index: 2000;
+        }
+
+
+        /* FLOR ESPECIAL DEL CENTRO */
+
+        .flor-centro {
+
+            filter:
+                drop-shadow(0 0 16px rgba(255, 215, 0, 1));
+        }
+
+
+        /* =====================================
+           FRASES
+        ====================================== */
+
+        .frase {
+
+            position: absolute;
+
+            width: 290px;
+
+            padding: 16px 18px;
+
+            background:
+                rgba(255, 250, 252, 0.98);
+
+            border:
+                2px solid #e58aae;
+
+            border-radius: 18px;
+
+            color: #74334e;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 30px rgba(100, 40, 70, 0.22);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+
+            z-index: 5000;
+        }
+
+
+        .frase strong {
+
+            display: block;
+
+            margin-top: 8px;
+
+            color: #d94f87;
+
+            font-size: 12px;
+
+            letter-spacing: 1px;
+        }
+
+
+        .especial:hover .frase {
+
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+
+        /* FRASE ARRIBA */
+
+        .frase.arriba {
+
+            bottom: 115px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%) translateY(8px);
+        }
+
+
+        .especial:hover .frase.arriba {
+
+            transform:
+                translateX(-50%) translateY(0);
+        }
+
+
+        /* FRASE ABAJO */
+
+        .frase.abajo {
+
+            top: 115px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%) translateY(-8px);
+        }
+
+
+        .especial:hover .frase.abajo {
+
+            transform:
+                translateX(-50%) translateY(0);
+        }
+
+
+        /* FRASE DERECHA */
+
+        .frase.derecha {
+
+            left: 120px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%) translateX(-8px);
+        }
+
+
+        .especial:hover .frase.derecha {
+
+            transform:
+                translateY(-50%) translateX(0);
+        }
+
+
+        /* FRASE IZQUIERDA */
+
+        .frase.izquierda {
+
+            right: 120px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%) translateX(8px);
+        }
+
+
+        .especial:hover .frase.izquierda {
+
+            transform:
+                translateY(-50%) translateX(0);
+        }
+
+
+        /* =====================================
+           PAPEL DEL RAMO
+        ====================================== */
+
+        .papel {
+
+            position: absolute;
+
+            width: 310px;
+            height: 200px;
+
+            left: 295px;
+            bottom: 0;
+
+            background:
+                linear-gradient(145deg,
+                    rgba(255, 255, 255, 0.88),
+                    rgba(255, 230, 240, 0.90));
+
+            clip-path:
+                polygon(0 0,
+                    100% 0,
+                    67% 100%,
+                    33% 100%);
+
+            z-index: 10;
+
+            filter:
+                drop-shadow(0 8px 10px rgba(100, 40, 70, 0.12));
+        }
+
+
+        /* =====================================
+           LAZO
+        ====================================== */
+
+        .lazo {
+
+            position: absolute;
+
+            left: 50%;
+            bottom: 78px;
+
+            transform:
+                translateX(-50%);
+
+            width: 78px;
+            height: 29px;
+
+            background: #d94f87;
+
+            border-radius: 50%;
+
+            z-index: 30;
+
+            box-shadow:
+                0 4px 8px rgba(100, 30, 70, 0.20);
+        }
+
+
+        .lazo::before,
+        .lazo::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 58px;
+            height: 44px;
+
+            background: #e975a5;
+
+            top: -8px;
+        }
+
+
+        .lazo::before {
+
+            right: 58px;
+
+            border-radius:
+                60% 10% 60% 10%;
+
+            transform:
+                rotate(-18deg);
+        }
+
+
+        .lazo::after {
+
+            left: 58px;
+
+            border-radius:
+                10% 60% 10% 60%;
+
+            transform:
+                rotate(18deg);
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <a href="canciones.html" class="boton-siguiente">
+        Seguimos con esta pequeña aventura →
+    </a>
+
+
+    <div class="escenario">
+
+        <div id="ramo">
+
+            <div class="papel"></div>
+
+            <div class="lazo"></div>
+
+        </div>
+
+    </div>
+
+    <body>
+
+        <!-- BOTÓN PARA CONTINUAR -->
+        <a href="canciones.html" class="boton-siguiente">
+            Seguimos con esta pequeña aventura →
+        </a>
+
+
+        <!-- ESCENARIO -->
+        <div class="escenario">
+
+            <div id="ramo">
+
+                <!-- PAPEL DEL RAMO -->
+                <div class="papel"></div>
+
+                <!-- LAZO -->
+                <div class="lazo"></div>
+
+            </div>
+
+        </div>
+
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box
+            }
+
+            body {
+                width: 100%;
+                height: 100vh;
+                overflow: hidden;
+                font-family: Arial, sans-serif;
+                background: #f8c8dc
+            }
+
+            .boton-siguiente {
+                position: fixed;
+                top: 25px;
+                right: 30px;
+                z-index: 5000;
+                text-decoration: none;
+                background: #fff7fa;
+                color: #d94f87;
+                border: 2px solid #e58aae;
+                padding: 15px 24px;
+                border-radius: 40px;
+                font-weight: bold;
+                box-shadow: 0 7px 18px #963c6433;
+                transition: .3s
+            }
+
+            .boton-siguiente:hover {
+                transform: scale(1.06);
+                background: #ffe8f1
+            }
+
+            .escenario {
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center
+            }
+
+            #ramo {
+                position: relative;
+                width: 900px;
+                height: 650px
+            }
+
+            .tallo {
+                position: absolute;
+                height: 8px;
+                background: linear-gradient(#43b764, #1b7f3b);
+                border-radius: 20px;
+                transform-origin: left center;
+                z-index: 1;
+                transform: rotate(var(--a)) scaleX(0);
+                animation: crecer .9s ease-out var(--d) forwards
+            }
+
+            .tallo:after {
+                content: "";
+                position: absolute;
+                width: 38px;
+                height: 20px;
+                left: 55%;
+                top: -5px;
+                background: linear-gradient(135deg, #55bd6f, #1f7d3c);
+                border-radius: 100% 0 100% 0;
+                transform: rotate(-35deg)
+            }
+
+            @keyframes crecer {
+                to {
+                    transform: rotate(var(--a)) scaleX(1)
+                }
+            }
+
+            .papel {
+                position: absolute;
+                width: 320px;
+                height: 205px;
+                left: 290px;
+                bottom: 0;
+                background: linear-gradient(145deg, #ffffffd1, #ffe5f0f2);
+                clip-path: polygon(0 0, 100% 0, 70% 100%, 30% 100%);
+                z-index: 3
+            }
+
+            .lazo {
+                position: absolute;
+                left: 50%;
+                bottom: 83px;
+                transform: translateX(-50%);
+                width: 78px;
+                height: 30px;
+                background: #d94f87;
+                border-radius: 50%;
+                z-index: 25
+            }
+
+            .lazo:before,
+            .lazo:after {
+                content: "";
+                position: absolute;
+                width: 60px;
+                height: 45px;
+                background: #e975a5;
+                top: -8px
+            }
+
+            .lazo:before {
+                right: 58px;
+                border-radius: 60% 10% 60% 10%;
+                transform: rotate(-18deg)
+            }
+
+            .lazo:after {
+                left: 58px;
+                border-radius: 10% 60% 10% 60%;
+                transform: rotate(18deg)
+            }
+
+            .flor {
+                position: absolute;
+                width: 112px;
+                height: 112px;
+                transform: translate(-50%, -50%);
+                z-index: 20;
+                transition: .28s
+            }
+
+            .cabeza {
+                position: absolute;
+                width: 92px;
+                height: 92px;
+                left: 10px;
+                top: 10px;
+                opacity: 0;
+                transform: scale(0);
+                animation: florecer .72s ease-out var(--fd) forwards
+            }
+
+            @keyframes florecer {
+                0% {
+                    opacity: 0;
+                    transform: scale(0) rotate(-30deg)
+                }
+
+                70% {
+                    opacity: 1;
+                    transform: scale(1.16) rotate(5deg)
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: scale(1)
+                }
+            }
+
+            .petalo {
+                position: absolute;
+                width: 25px;
+                height: 47px;
+                left: 34px;
+                top: 22px;
+                background: linear-gradient(#fff45e, #ffc400 72%, #e7a900);
+                border-radius: 55% 55% 45% 45%;
+                transform-origin: 12px 24px
+            }
+
+            .centro {
+                position: absolute;
+                width: 42px;
+                height: 42px;
+                left: 25px;
+                top: 25px;
+                border-radius: 50%;
+                z-index: 5;
+                background: radial-gradient(circle at 35% 35%, #8b4a17, #4e2608 55%, #251003)
+            }
+
+            .especial {
+                cursor: pointer;
+                z-index: 40;
+                animation: brillo 2.4s ease-in-out infinite
+            }
+
+            @keyframes brillo {
+
+                0%,
+                100% {
+                    filter: drop-shadow(0 0 7px #ffd3008c)
+                }
+
+                50% {
+                    filter: drop-shadow(0 0 16px #ffe21efa)
+                }
+            }
+
+            .especial:hover {
+                transform: translate(-50%, -50%) scale(1.13);
+                filter: drop-shadow(0 0 20px #ffdd00);
+                z-index: 2000
+            }
+
+            .flor-centro {
+                z-index: 80
+            }
+
+            .frase {
+                position: absolute;
+                width: 300px;
+                padding: 15px 18px;
+                background: #fffafcfa;
+                border: 2px solid #e58aae;
+                border-radius: 18px;
+                color: #6f3149;
+                font-size: 14px;
+                line-height: 1.45;
+                text-align: center;
+                box-shadow: 0 11px 26px #6e284638;
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transition: .25s;
+                z-index: 3000
+            }
+
+            .frase strong {
+                display: block;
+                margin-top: 8px;
+                color: #d94f87;
+                font-size: 12px;
+                letter-spacing: 1px
+            }
+
+            .especial:hover .frase {
+                opacity: 1;
+                visibility: visible
+            }
+
+            .frase.arriba {
+                bottom: 120px;
+                left: 50%;
+                transform: translateX(-50%)
+            }
+
+            .frase.abajo {
+                top: 120px;
+                left: 50%;
+                transform: translateX(-50%)
+            }
+
+            .frase.derecha {
+                left: 120px;
+                top: 50%;
+                transform: translateY(-50%)
+            }
+
+            .frase.izquierda {
+                right: 120px;
+                top: 50%;
+                transform: translateY(-50%)
+            }
+
+            .ayuda {
+                position: fixed;
+                left: 30px;
+                bottom: 24px;
+                color: #8d4863;
+                font-size: 14px
+            }
+        </style>
+        </head>
+
+        <body>
+            <a href="canciones.html" class="boton-siguiente">Seguimos con esta pequeña aventura →</a>
+            <div class="escenario">
+                <div id="ramo">
+                    <div class="papel"></div>
+                    <div class="lazo"></div>
+                </div>
+            </div>
+            <div class="ayuda">Pasa el mouse por las flores que brillan ✨</div>
+            <script>
+                const ramo = document.getElementById("ramo");
+                const base = { x: 450, y: 565 };
+                const flores = [
+                    { x: 450, y: 70, especial: true, posicion: "abajo", autor: "DUKI", frase: "Tal vez tú no te fuiste y yo tengo la suerte de hacer que me perdones, ¡antes de perderte!" },
+                    { x: 245, y: 125, especial: true, posicion: "derecha", autor: "DUKI", frase: "Por ti estoy aguantando los disparos, me peleo con tipos malos, bebo más en ocasiones, más cuando no estás al lado, ¡pero esto vale la pena!" },
+                    { x: 655, y: 125, especial: true, posicion: "izquierda", autor: "FEID", frase: "¿Cuántas veces nos hemos dejado? ¡Hasta por un mes nos hemos peleado!" },
+                    { x: 155, y: 275, especial: true, posicion: "derecha", autor: "FEID", frase: "Sé que soy un hpta pero ven, haría lo que fuera por ti, ¡por recuperarte otra vez!" },
+                    { x: 745, y: 275, especial: true, posicion: "izquierda", autor: "FEID", frase: "Tú conoces La Amenaza con rines en croma, mi baby se ve fina, nunca se ve putona." },
+                    { x: 255, y: 405, especial: true, posicion: "derecha", autor: "MORAT", frase: "Recuerdo por qué me enamoré, recuerdo lo que te enamoró, pero contestaste y ya se me olvidó ¡porque se acabó!" },
+                    { x: 645, y: 405, especial: true, posicion: "izquierda", autor: "ÁLVARO DÍAZ", frase: "No hay rockstar en cuentos de hadas, pero si estuviese ahí, no te faltaría nada." },
+                    { x: 450, y: 255, especial: true, centro: true, posicion: "arriba", autor: "DUKI", frase: "Tú alma tiene un pedazo de mí, es el que falta pa' hacerme feliz, así no voy a sobrevivir, esto no se puede sobrescribir, sabes lo que pienso sin tener que hablar." },
+                    { x: 340, y: 95 }, { x: 560, y: 95 }, { x: 335, y: 180 }, { x: 565, y: 180 }, { x: 245, y: 225 }, { x: 655, y: 225 },
+                    { x: 350, y: 300 }, { x: 550, y: 300 }, { x: 300, y: 355 }, { x: 600, y: 355 }, { x: 390, y: 390 }, { x: 390, y: 390 },
+                    { x: 510, y: 390 },
+
+                    /* FLORES EXTRA PARA HACER EL RAMO MÁS LLENO */
+
+                    { x: 190, y: 340 },
+                    { x: 710, y: 340 },
+
+                    { x: 285, y: 105 },
+                    { x: 615, y: 105 },
+
+                    { x: 285, y: 270 },
+                    { x: 615, y: 270 },
+
+                    { x: 220, y: 365 },
+                    { x: 680, y: 365 },
+
+                    { x: 335, y: 420 },
+                    { x: 565, y: 420 },
+
+                    { x: 410, y: 430 },
+                    { x: 490, y: 430 },
+
+                    { x: 405, y: 155 },
+                    { x: 495, y: 155 },
+
+                    { x: 395, y: 330 },
+                    { x: 505, y: 330 }
+
+                ];
+                function petalos(c) { for (let i = 0; i < 12; i++) { const p = document.createElement("div"); p.className = "petalo"; p.style.transform = `rotate(${i * 30}deg) translateY(-27px)`; c.appendChild(p) } }
+                function crearFlor(f, i) {
+                    const dx = f.x - base.x, dy = f.y - base.y, l = Math.hypot(dx, dy), a = Math.atan2(dy, dx) * 180 / Math.PI;
+                    const t = document.createElement("div"); t.className = "tallo"; t.style.left = base.x + "px"; t.style.top = base.y + "px"; t.style.width = l + "px"; t.style.setProperty("--a", a + "deg"); t.style.setProperty("--d", i * .08 + "s"); ramo.appendChild(t);
+                    const flor = document.createElement("div"); flor.className = "flor " + (f.especial ? "especial" : "normal") + (f.centro ? " flor-centro" : ""); flor.style.left = f.x + "px"; flor.style.top = f.y + "px";
+                    const cab = document.createElement("div"); cab.className = "cabeza"; cab.style.setProperty("--fd", (i * .08 + .65) + "s"); petalos(cab);
+                    const cen = document.createElement("div"); cen.className = "centro"; cab.appendChild(cen); flor.appendChild(cab);
+                    if (f.especial) { const tar = document.createElement("div"); tar.className = "frase " + f.posicion; tar.innerHTML = f.frase + "<strong>" + f.autor + "</strong>"; flor.appendChild(tar) }
+                    ramo.appendChild(flor);
+                }
+                flores.forEach(crearFlor);
+            </script>
+        </body>
+
+</html>

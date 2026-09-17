@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Canciones para ti</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            width: 100%;
+            min-height: 100vh;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            /* MISMO ROSADO PASTEL */
+            background: #f8c8dc;
+
+            color: #74334e;
+        }
+
+
+        /* =========================
+           CONTENEDOR PRINCIPAL
+        ========================== */
+
+        .contenido {
+
+            width: 100%;
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            padding: 50px;
+        }
+
+
+        /* =========================
+           TÍTULO
+        ========================== */
+
+        .titulo {
+
+            font-size: 38px;
+
+            margin-bottom: 15px;
+
+            color: #74334e;
+
+            text-align: center;
+        }
+
+
+        .subtitulo {
+
+            font-size: 18px;
+
+            margin-bottom: 45px;
+
+            color: #98536e;
+
+            text-align: center;
+
+            max-width: 700px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           CONTENEDOR DE CANCIONES
+        ========================== */
+
+        .canciones {
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 28px;
+
+            flex-wrap: wrap;
+
+            max-width: 1250px;
+        }
+
+
+        /* =========================
+           TARJETA DE CADA CANCIÓN
+        ========================== */
+
+        .cancion {
+
+            width: 200px;
+
+            text-decoration: none;
+
+            text-align: center;
+
+            color: #74334e;
+
+            transition: 0.35s ease;
+        }
+
+
+        /* IMAGEN */
+
+        .cancion img {
+
+            width: 200px;
+            height: 200px;
+
+            object-fit: cover;
+
+            border-radius: 22px;
+
+            border: 3px solid #fff7fa;
+
+            box-shadow:
+                0 10px 22px rgba(140, 60, 95, 0.20);
+
+            transition: 0.35s ease;
+        }
+
+
+        /* NOMBRE DE LA CANCIÓN */
+
+        .cancion h2 {
+
+            margin-top: 15px;
+
+            font-size: 17px;
+
+            color: #74334e;
+        }
+
+
+        /* ARTISTA */
+
+        .cancion p {
+
+            margin-top: 5px;
+
+            font-size: 14px;
+
+            color: #b15d7f;
+        }
+
+
+        /* =========================
+           EFECTO AL PASAR EL MOUSE
+        ========================== */
+
+        .cancion:hover {
+
+            transform: translateY(-14px);
+        }
+
+
+        .cancion:hover img {
+
+            transform: scale(1.08);
+
+            border-color: #e58aae;
+
+            box-shadow:
+                0 18px 35px rgba(217, 79, 135, 0.40);
+        }
+
+
+        .cancion:hover h2 {
+
+            color: #d94f87;
+        }
+
+
+        /* =========================
+           PEQUEÑA INDICACIÓN
+        ========================== */
+
+        .ayuda {
+
+            margin-top: 40px;
+
+            font-size: 14px;
+
+            color: #98536e;
+
+            opacity: 0.85;
+        }
+
+
+        /* =========================
+           BOTÓN VOLVER
+        ========================== */
+
+        .volver {
+
+            position: fixed;
+
+            top: 25px;
+            left: 30px;
+
+            text-decoration: none;
+
+            background: #fff7fa;
+
+            color: #d94f87;
+
+            border: 2px solid #e58aae;
+
+            padding: 13px 22px;
+
+            border-radius: 40px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 7px 18px rgba(150, 60, 100, 0.20);
+
+            transition: 0.3s ease;
+        }
+
+
+        .volver:hover {
+
+            transform: scale(1.06);
+
+            background: #ffe8f1;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BOTÓN PARA VOLVER A LAS FLORES -->
+
+    <a href="rosas_amarillas.html" class="volver">
+
+        ← Volver
+
+    </a>
+
+
+
+    <div class="contenido">
+
+
+        <!-- TÍTULO -->
+
+        <h1 class="titulo">
+            Canciones que me hacen pensar en ti
+        </h1>
+
+
+        <p class="subtitulo">
+            Hay canciones que dicen cosas que a veces uno no sabe cómo decir.
+            Y estas son algunas que me hacen acuerdar de esos ojitos y tus luneres que resaltan en tu carita :)
+        </p>
+
+
+
+        <!-- =========================
+             LAS 5 CANCIONES
+        ========================== -->
+
+        <div class="canciones">
+
+
+            <!-- CANCIÓN 1 -->
+
+            <a href="https://open.spotify.com/intl-es/track/7sQkCW2vO8Tbx57oQwAIKk?si=20c0ba7f1e9740c2" target="_blank"
+                class="cancion">
+
+                <img src="images call my maybe.jpg" alt="Canción 1">
+
+                <h2>
+                    CALL MY MAYBE
+                </h2>
+
+                <p>
+                    DUKI
+                </p>
+
+            </a>
+
+
+
+            <!-- CANCIÓN 2 -->
+
+            <a href="https://open.spotify.com/intl-es/track/3b9hmdwt0RWluhFm3hLKz8?si=4fcfefe9082a4466" target="_blank"
+                class="cancion">
+
+                <img src="Mor no le temas a la oscuridad.jpg" alt="Canción 2">
+
+                <h2>
+                    ROMANTICOS DE LUNES
+                </h2>
+
+                <p>
+                    FEID
+                </p>
+
+            </a>
+
+
+
+            <!-- CANCIÓN 3 -->
+
+            <a href="https://open.spotify.com/intl-es/track/2yhs4Kqr46kKUkuTIAfrCm?si=92b0d8a6e8714990" target="_blank"
+                class="cancion">
+
+                <img src="Nueva york.jpg" alt="Canción 3">
+
+                <h2>
+                    NUEVA YORK
+                </h2>
+
+                <p>
+                    BLESSD
+                </p>
+
+            </a>
+
+
+
+            <!-- CANCIÓN 4 -->
+
+            <a href="https://open.spotify.com/intl-es/track/4Q1oBLFPK9R4eUHkNlihlF?si=d1bbb2929ce74444" target="_blank"
+                class="cancion">
+
+                <img src="506.jpg" alt="Canción 4">
+
+                <h2>
+                    506
+                </h2>
+
+                <p>
+                    MORAT Y JUANES
+                </p>
+
+            </a>
+
+
+
+            <!-- CANCIÓN 5 -->
+
+            <a href="https://open.spotify.com/intl-es/track/29QWLM6tRe7Yp4dvNt02JC?si=b3e5d01dcbe841ba" target="_blank"
+                class="cancion">
+
+                <img src="ECLIPSE SOLAR.jpg" alt="Canción 5">
+
+                <h2>
+                    eCLIPSE sOLAR
+                </h2>
+
+                <p>
+                    DUKI
+                </p>
+
+            </a>
+
+
+        </div>
+
+
+
+        <p class="ayuda">
+            Pasa el mouse por una canción y haz clic para escucharla 🎵
+        </p>
+        <br>
+        <p class="sustitulo">
+            Y así termina esta pequeña aventura, Meli. Quería que fuera algo único y diferente, espero que lo hayas disfrutado
+            tanto como yo. No sé qué más agregar, tal vez solo... U.V.E.S.
+        </p>
+
+    </div>
+
+
+</body>
+
+</html>
